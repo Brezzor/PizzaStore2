@@ -8,11 +8,16 @@ namespace PizzaStore
     {
         private static List<Pizza> menu = new List<Pizza>()
         {
-            new Pizza("Pepperoni pizza", new List<string>(){"Pepperoni"}, 60),
-            new Pizza("Hawaian pizza", new List<string>(){"Ham", "Pineapple"}, 65),
-            new Pizza("Italian pizza", new List<string>(){"Meatballs", "Chili"}, 65),
-            new Pizza("Vegetarian pizza", new List<string>(){"Mushrooms", "Pepers", "Asparagus"}, 70)
-        };        
+            new Pizza("Pepperoni pizza", new List<string>{"Pepperoni"}),
+            new Pizza("Hawaian pizza", new List<string>{"Ham", "Pineapple"}),
+            new Pizza("Italian pizza", new List<string>{"Meatballs", "Chili"}),
+            new Pizza("Vegetarian pizza", new List<string>{"Mushrooms", "Pepers", "Asparagus"})
+        };       
+        
+        public static void Create(string name, List<string> toppings)
+        {
+            menu.Add(new Pizza(name, toppings));
+        }
         public static List<Pizza> GetMenu()
         {            
             return menu;
