@@ -11,7 +11,7 @@ namespace PizzaStore
             new Pizza("Pepperoni pizza", new List<string>{"Pepperoni"}),
             new Pizza("Hawaian pizza", new List<string>{"Ham", "Pineapple"}),
             new Pizza("Italian pizza", new List<string>{"Meatballs", "Chili"}),
-            new Pizza("Vegetarian pizza", new List<string>{"Mushrooms", "Pepers", "Asparagus"})
+            new Pizza("Vegetarian pizza", new List<string>{"Mushrooms", "Pepers", "White Asparagus"})
         };       
         
         public static void Create(string name, List<string> toppings)
@@ -30,10 +30,13 @@ namespace PizzaStore
             Console.WriteLine("|----------------------------------");
             for (int i = 0; i < pizzas.Count; i++)
             {
-                Console.WriteLine($"|Pizza nr.{i}: {pizzas[i].Name} | price: {pizzas[i].Price}kr.");                
-                pizzas[i].GetToppings();                
-            }
-            Console.WriteLine("|----------------------------------");
+                Console.WriteLine($"| Pizza nr.{i}: {pizzas[i].Name} | price: {pizzas[i].Price}kr.");
+                foreach (string topping in pizzas[i].GetToppings())
+                {
+                    Console.WriteLine($"| {topping}");
+                }
+                Console.WriteLine("|----------------------------------");
+            }            
         }           
         public static Pizza GetPizza(int num)
         {

@@ -33,13 +33,14 @@ namespace PizzaStore
             Console.WriteLine($"\n|---- Pizza order {OrderNum}----");
             Console.WriteLine($"| First name: {_customer.FirstName}");
             Console.WriteLine($"| Last name: {_customer.LastName}");
+            Console.WriteLine("|---------------------------------");
             Console.WriteLine("| Pizzas ordered:");
             foreach (Pizza pizza in _pizzas)
             {
                 Console.WriteLine($"| {pizza.Name}");
                 foreach (string topping in pizza.GetToppings())
                 {
-                    Console.WriteLine($"| {string.Join(", ", topping)}");
+                    Console.WriteLine($"| {topping}");
                 }
             }
             Console.WriteLine($"| Total price: {CalculateTotalPrice()}");
@@ -53,6 +54,7 @@ namespace PizzaStore
                     Console.WriteLine($"\n|---- Pizza order {orders[i].OrderNum}----");
                     Console.WriteLine($"| First name: {orders[i]._customer.FirstName}");
                     Console.WriteLine($"| Last name: {orders[i]._customer.LastName}");
+                    Console.WriteLine("|-------------------------------------------");
                     foreach (Pizza pizza in _pizzas)
                     {
                         Console.WriteLine($"| {pizza.Name}");
