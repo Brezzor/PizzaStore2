@@ -9,8 +9,9 @@ namespace PizzaStore
         private const int _toppingPrice = 5;        
         private string _name;        
         private List<string> _toppings = new List<string>();
-        private const double _basePrice = 50;
+        private const double _basePrice = 45;
         private double _price;
+
         public Pizza(string name, List<string> toppings)
         {            
             _name = name;
@@ -20,12 +21,15 @@ namespace PizzaStore
                 _toppings.Add(topping);                
                 _price = _price + _toppingPrice; 
             }            
-        }        
-        public string Name { get { return _name; } }
+        }
+        
+        public string Name { get { return _name; } set { _name = value; } }
+
         public List<string> GetToppings()
         {
             return _toppings;
         }
+
         public double Price { get { return _price; } }
     }
 }

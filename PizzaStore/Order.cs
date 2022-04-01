@@ -58,12 +58,14 @@ namespace PizzaStore
                     foreach (Pizza pizza in _pizzas)
                     {
                         Console.WriteLine($"| {pizza.Name}");
+                        Console.WriteLine("|-------------------------------------------");
                         foreach (string topping in pizza.GetToppings())
                         {
                             Console.WriteLine($"| {string.Join(", ", topping)}");
                         }
                     }
                     Console.WriteLine($"| Total price: {orders[i].CalculateTotalPrice()}");
+                    Console.WriteLine("|-------------------------------------------");
                 }
             }
             else
