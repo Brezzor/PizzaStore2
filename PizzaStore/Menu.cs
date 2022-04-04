@@ -8,15 +8,15 @@ namespace PizzaStore
     {
         private static List<Pizza> menu = new List<Pizza>()
         {
-            new Pizza("Pepperoni pizza", new List<string>{"Sauce", "Cheese", "Pepperoni"}),
-            new Pizza("Hawaian pizza", new List<string>{ "Sauce", "Cheese", "Ham", "Pineapple"}),
-            new Pizza("Italian pizza", new List<string>{ "Sauce", "Cheese", "Meatballs", "Chili"}),
-            new Pizza("Vegetarian pizza", new List<string>{ "Sauce", "Cheese", "Mushrooms", "Pepers", "White Asparagus"})
+            new Pizza { Name = "Pepperoni pizza", Toppings = {"Sauce", "Cheese", "Pepperoni"} },
+            new Pizza { Name = "Hawaian pizza", Toppings = {"Sauce", "Cheese", "Ham", "Pineapple" } },
+            new Pizza { Name = "Italien pizza", Toppings = { "Sauce", "Cheese", "Meatballs", "Chili"} },
+            new Pizza { Name = "Vegetarien pizza", Toppings = { "Sauce", "Cheese", "Mushrooms", "Pepers", "White Asparagus"} }
         };
 
         public static void CreatePizza(string name, List<string> toppings)
         {
-            menu.Add(new Pizza(name, toppings));
+            menu.Add(new Pizza { Name = name, Toppings = toppings });
         }        
 
         public static void DeletePizza(int num)
@@ -33,7 +33,7 @@ namespace PizzaStore
                 Console.WriteLine("|----------------------------------");
                 Console.WriteLine($"| Nr.{i} | {menu[i].Name} | price: {menu[i].Price}kr.");
                 Console.WriteLine("|----------------------------------");
-                foreach (string topping in menu[i].GetToppings())
+                foreach (string topping in menu[i].Toppings)
                 {
                     Console.WriteLine($"| {topping}");
                 }

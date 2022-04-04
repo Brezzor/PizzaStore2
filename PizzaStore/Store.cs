@@ -95,7 +95,7 @@ namespace PizzaStore
                                 Console.Write("Last name: ");
                                 string lastName = Console.ReadLine();
 
-                                Customer customer = new Customer(firstName, lastName);
+                                Customer customer = new Customer { FirstName = firstName, LastName = lastName };
 
                                 Order order = new Order(customer, pizzas);
 

@@ -38,7 +38,7 @@ namespace PizzaStore
             foreach (Pizza pizza in _pizzas)
             {
                 Console.WriteLine($"| {pizza.Name}");
-                foreach (string topping in pizza.GetToppings())
+                foreach (string topping in pizza.Toppings)
                 {
                     Console.WriteLine($"| {topping}");
                 }
@@ -59,7 +59,7 @@ namespace PizzaStore
                     {
                         Console.WriteLine($"| {pizza.Name}");
                         Console.WriteLine("|-------------------------------------------");
-                        foreach (string topping in pizza.GetToppings())
+                        foreach (string topping in pizza.Toppings)
                         {
                             Console.WriteLine($"| {string.Join(", ", topping)}");
                         }
