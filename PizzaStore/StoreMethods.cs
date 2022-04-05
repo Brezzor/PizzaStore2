@@ -5,45 +5,80 @@ using System.Text;
 namespace PizzaStore2
 {
     class StoreMethods
-    {        
-        private static List<string> menuChoices = new List<string>()
-        {
-            "[1]: Show Menu",
-            "[2]: Create Order",
-            "[3]: Show Orders",
-            "[0]: Exit"
-        };
+    {
+        private static int menuIndex = 0;
 
-        public static List<string> GetMenuChoices()
+        public static List<string> menuChoices = new List<string>()
         {
-            return menuChoices;
-        }
-
-        public static void PrintMenuChoices()
-        {
-            foreach (string s in menuChoices)
-            {
-                Console.WriteLine(s);
-            }
-        }
+            "Show Menu",
+            "Create Order",
+            "Show Orders",
+            "Exit"
+        };       
 
         public static void PrintIntro()
         {
             Console.Clear();
             Console.WriteLine("---- Pizza Store ----");
-            Console.WriteLine("\nOptions:");
-            PrintMenuChoices();
-            Console.WriteLine("Type the number of what you would like to do");
-            Console.Write("Command: ");
+            Console.WriteLine("\nCommands: ");                      
         }
 
-        public static int MenuChoice()
+        public static string MenuChoice()
         {
             PrintIntro();
-            int result = StoreMethods.ParseInt();
-            return result;
+            return ParseString();
         }
-        
+
+        public static int PizzaChoice()
+        {
+            Menu.PrintMenu();
+            return ParseInt();
+        }
+
+        public static string ParseString()
+        {
+            for (int i = 0; i < menuChoices.Count; i++)
+            {
+                if (i == menuIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine(menuChoices[i]);
+                }
+                else
+                {
+                    Console.WriteLine(menuChoices[i]);
+                }
+                Console.ResetColor();
+            }
+
+            ConsoleKeyInfo ckey = Console.ReadKey();
+            switch (ckey.Key)
+            {
+                case ConsoleKey.DownArrow:
+                    if (menuIndex == menuChoices.Count -1) { }
+                    else { menuIndex++; }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (menuIndex <= 0) { }
+                    else { menuIndex--; }
+                    break;
+                case ConsoleKey.LeftArrow:
+                    Console.Clear();
+                    break;
+                case ConsoleKey.RightArrow:
+                    Console.Clear();
+                    break;
+                case ConsoleKey.Enter:
+                    return menuChoices[menuIndex];                    
+                default:
+                    return "";                    
+            }
+            
+            Console.Clear();
+            return "";
+        }
+
         public static void CreateOrder()
         {
             Menu.PrintMenu();
@@ -96,6 +131,6 @@ namespace PizzaStore2
                 Console.WriteLine($"\nInput was out of range");                
             }
             return -1;
-        }
+        }        
     }
 }

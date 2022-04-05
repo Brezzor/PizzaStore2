@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace PizzaStore2
 {
@@ -8,37 +9,39 @@ namespace PizzaStore2
     {
         static bool _exit = false;
         public static void Start()
-        {            
+        {
+            Console.Clear();
+
+            Console.CursorVisible = false;
+            
             while (!_exit)
-            {
-                int menuChoice = StoreMethods.MenuChoice();
+            {                
+                string menuChoice = StoreMethods.MenuChoice();
                 switch (menuChoice)
                 {
-                    case 1:
+                    case "Show Menu":
                         Console.Clear();
                         Menu.PrintMenu();
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;
-                    case 2:
+                    case "Create Order":
                         Console.Clear();
                         StoreMethods.CreateOrder();
                         break;
-                    case 3:
+                    case "Show Orders":
                         Console.Clear();
                         Order.PrintOrders();
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;
-                    case 0:
-                        Console.Clear();
+                    case "Exit":
                         _exit = true;
-                        break;
-                    default:
-                        Console.WriteLine("\nInvalid command!");                        
-                        Console.Write("Press any key to continue");
-                        Console.ReadKey();
-                        break;
+                        Console.Clear();
+                        Console.WriteLine("Closing program...");
+                        Thread.Sleep(1000);
+                        Environment.Exit(0);
+                        break;                    
                 }
             }
         }

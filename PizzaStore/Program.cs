@@ -9,9 +9,6 @@ namespace PizzaStore2
         static void Main(string[] args)
         {            
             Store.Start();
-
-            Console.WriteLine("\nPress any key to terminate program!");
-            Console.ReadKey();
         }
     }
 }
