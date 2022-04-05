@@ -6,7 +6,10 @@ namespace PizzaStore2
 {
     class StoreMethods
     {
-        private static int menuIndex = 0;
+        private static bool done = false;
+        public static int menuIndex = 0;
+        private static Customer newCustomer = new Customer();
+        private static List<Pizza> pizzas = new List<Pizza>();        
 
         public static List<string> menuChoices = new List<string>()
         {
@@ -14,19 +17,37 @@ namespace PizzaStore2
             "Create Order",
             "Show Orders",
             "Exit"
-        };       
+        };
+
+        public static List<string> subMenuChoices = new List<string>()
+        {
+            "Add Pizza",
+            "Remove Pizza",
+            "Edit Pizza",
+            "Create",
+            "Cancel"
+        };
 
         public static void PrintIntro()
         {
-            Console.Clear();
-            Console.WriteLine("---- Pizza Store ----");
+            Console.WriteLine("¤-------------¤");
+            Console.WriteLine("| Pizza Store |");
+            Console.WriteLine("¤-------------¤");
             Console.WriteLine("\nCommands: ");                      
+        }
+
+        public static void PrintOrderIntro()
+        {
+            Console.WriteLine("¤-------------¤");
+            Console.WriteLine("| Order Pizza |");
+            Console.WriteLine("¤-------------¤");
+            Console.WriteLine();
         }
 
         public static string MenuChoice()
         {
             PrintIntro();
-            return ParseString();
+            return ParseString(menuChoices);
         }
 
         public static int PizzaChoice()
@@ -35,19 +56,39 @@ namespace PizzaStore2
             return ParseInt();
         }
 
-        public static string ParseString()
+        private static int ParseInt()
         {
-            for (int i = 0; i < menuChoices.Count; i++)
+            string input = Console.ReadKey().KeyChar.ToString();
+
+            try
+            {
+                int result = int.Parse(input);
+                return result;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"\nInput was in wrong format");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine($"\nInput was out of range");
+            }
+            return -1;
+        }
+
+        public static string ParseString(List<string> choices)
+        {            
+            for (int i = 0; i < choices.Count; i++)
             {
                 if (i == menuIndex)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine(menuChoices[i]);
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(choices[i]);
                 }
                 else
                 {
-                    Console.WriteLine(menuChoices[i]);
+                    Console.WriteLine(choices[i]);
                 }
                 Console.ResetColor();
             }
@@ -56,7 +97,7 @@ namespace PizzaStore2
             switch (ckey.Key)
             {
                 case ConsoleKey.DownArrow:
-                    if (menuIndex == menuChoices.Count -1) { }
+                    if (menuIndex == choices.Count -1) { }
                     else { menuIndex++; }
                     break;
                 case ConsoleKey.UpArrow:
@@ -69,9 +110,9 @@ namespace PizzaStore2
                 case ConsoleKey.RightArrow:
                     Console.Clear();
                     break;
-                case ConsoleKey.Enter:
-                    return menuChoices[menuIndex];                    
-                default:
+                case ConsoleKey.Enter:                    
+                    return choices[menuIndex];                    
+                default:                    
                     return "";                    
             }
             
@@ -81,56 +122,59 @@ namespace PizzaStore2
 
         public static void CreateOrder()
         {
-            MenuCatalog.PrintMenu();
-            Console.Write("Choose a pizza: ");            
-            int menuNum = ParseInt();
-            Console.WriteLine();
-            Pizza pizza = MenuCatalog.GetPizza(menuNum);
+            done = false;
+            menuIndex = 0;            
 
-            if (pizza != null)
+            while (!done)
             {
-                List<Pizza> pizzas = new List<Pizza>();                
-                pizzas.Add(pizza);
+                Console.Clear();
+                PrintOrderIntro();
+                Console.CursorVisible = false;                
+                string subMenuChoice = ParseString(subMenuChoices);
 
-                Console.WriteLine("\n-- Customer info --");
-                Console.Write("First name: ");
-                string firstName = Console.ReadLine();
-                Console.Write("Last name: ");
-                string lastName = Console.ReadLine();
-
-                Customer customer = new Customer { FirstName = firstName, LastName = lastName };
-
-                Order order = new Order { Customer = customer, Pizzas = pizzas };
-
-                order.PrintOrder();
-            }
-            else
-            {                
-                Console.WriteLine("Terminated creation of order");
-            }
-
-            Console.Write("\nPress any key to continue");
-            Console.ReadKey();
-        }
-
-        public static int ParseInt()
-        {
-            string input = Console.ReadKey().KeyChar.ToString();
-
-            try
-            {
-                int result = int.Parse(input);
-                return result;
+                switch (subMenuChoice)
+                {
+                    case "Add Pizza":                        
+                        Console.Clear();
+                        MenuCatalog.PrintMenu();
+                        Console.Write("\nPizza number: ");
+                        int choice = ParseInt();
+                        Pizza newPizza = MenuCatalog.GetPizza(choice);
+                        pizzas.Add(newPizza);
+                        Console.WriteLine($"{newPizza.Name} has been added to the order");
+                        Console.WriteLine("\nPress any key to continue");
+                        Console.ReadKey();
+                        menuIndex = 0;
+                        break;
+                    case "Remove Pizza":
+                        Console.Clear();
+                        menuIndex = 0;
+                        break;
+                    case "Edit Pizza":
+                        Console.Clear();
+                        menuIndex = 0;
+                        break;
+                    case "Create":
+                        Console.Clear();
+                        Console.CursorVisible = true;
+                        Console.Write("Write your firstname: ");
+                        newCustomer.FirstName = Console.ReadLine();
+                        Console.Write("\nWrite your lastname: ");
+                        newCustomer.LastName = Console.ReadLine();
+                        Order newOrder = new Order{ Customer = newCustomer, Pizzas = pizzas};
+                        newOrder.PrintOrder();
+                        Console.WriteLine("Order has been created");
+                        Console.WriteLine("\nPress any key to continue");
+                        Console.ReadKey();
+                        done = true;
+                        menuIndex = 0;
+                        break;
+                    case "Cancel":                                                 
+                        done = true;
+                        menuIndex = 0;
+                        break;
+                }
             }            
-            catch (FormatException )
-            {                
-                Console.WriteLine($"\nInput was in wrong format");                
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.WriteLine($"\nInput was out of range");                
-            }
-            return -1;
-        }        
+        }                
     }
 }

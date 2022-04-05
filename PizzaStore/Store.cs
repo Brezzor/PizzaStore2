@@ -7,36 +7,38 @@ namespace PizzaStore2
 {
     class Store
     {
-        static bool _exit = false;
+        private static bool done = false;
         public static void Start()
-        {
-            Console.Clear();
-
-            Console.CursorVisible = false;
-            
-            while (!_exit)
+        {            
+            while (!done)
             {                
+                Console.Clear();
+                Console.CursorVisible = false;
                 string menuChoice = StoreMethods.MenuChoice();
+
                 switch (menuChoice)
                 {
                     case "Show Menu":
+                        StoreMethods.menuIndex = 0;
                         Console.Clear();
                         MenuCatalog.PrintMenu();
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;
                     case "Create Order":
+                        StoreMethods.menuIndex = 0;
                         Console.Clear();
                         StoreMethods.CreateOrder();
                         break;
                     case "Show Orders":
+                        StoreMethods.menuIndex = 0;
                         Console.Clear();
                         Order.PrintOrders();
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;
                     case "Exit":
-                        _exit = true;
+                        done = true;
                         Console.Clear();
                         Console.WriteLine("Closing program...");
                         Thread.Sleep(1000);

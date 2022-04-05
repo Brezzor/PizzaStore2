@@ -27,17 +27,14 @@ namespace PizzaStore2
         
         public static void PrintMenu()
         {            
-            Console.WriteLine("\n|---------- Pizza menu ------------");            
+            Console.WriteLine("---------- Pizza menu ------------");            
             for (int i = 0; i < menu.Count; i++)
             {
-                Console.WriteLine("|----------------------------------");
-                Console.WriteLine($"| Nr.{i} | {menu[i].Name} | price: {menu[i].Price}kr.");
-                Console.WriteLine("|----------------------------------");
-                foreach (string topping in menu[i].Toppings)
-                {
-                    Console.WriteLine($"| {topping}");
-                }
-                Console.WriteLine("|----------------------------------");
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine($"Nr.{i} | {menu[i].Name} | price: {menu[i].Price}kr.");
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine($"{string.Join(", ", menu[i].Toppings)}");
+                Console.WriteLine("----------------------------------");
             }            
         }           
         public static Pizza GetPizza(int num)

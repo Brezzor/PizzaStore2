@@ -31,18 +31,15 @@ namespace PizzaStore2
         }
         public void PrintOrder()
         {
-            Console.WriteLine($"\n|---- Pizza order {OrderNum}----");
-            Console.WriteLine($"| First name: {_customer.FirstName}");
-            Console.WriteLine($"| Last name: {_customer.LastName}");
-            Console.WriteLine("|---------------------------------");
-            Console.WriteLine("| Pizzas ordered:");
+            Console.WriteLine($"\n---- Pizza order {OrderNum}----");
+            Console.WriteLine($"First name: {_customer.FirstName}");
+            Console.WriteLine($"Last name: {_customer.LastName}");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Pizzas ordered:");
             foreach (Pizza pizza in _pizzas)
             {
-                Console.WriteLine($"| {pizza.Name}");
-                foreach (string topping in pizza.Toppings)
-                {
-                    Console.WriteLine($"| {topping}");
-                }
+                Console.WriteLine($"{pizza.Name}");
+                Console.WriteLine($"{string.Join(", ", pizza.Toppings)}");
             }
             Console.WriteLine($"| Total price: {CalculateTotalPrice()}");
         }
@@ -52,21 +49,18 @@ namespace PizzaStore2
             {
                 for (int i = 0; i < orders.Count; i++)
                 {
-                    Console.WriteLine($"\n|---- Pizza order {orders[i].OrderNum}----");
-                    Console.WriteLine($"| First name: {orders[i]._customer.FirstName}");
-                    Console.WriteLine($"| Last name: {orders[i]._customer.LastName}");
-                    Console.WriteLine("|-------------------------------------------");
+                    Console.WriteLine($"---- Pizza order {orders[i].OrderNum}----");
+                    Console.WriteLine($"First name: {orders[i]._customer.FirstName}");
+                    Console.WriteLine($"Last name: {orders[i]._customer.LastName}");
+                    Console.WriteLine("-------------------------------------------");
                     foreach (Pizza pizza in _pizzas)
                     {
-                        Console.WriteLine($"| {pizza.Name}");
-                        Console.WriteLine("|-------------------------------------------");
-                        foreach (string topping in pizza.Toppings)
-                        {
-                            Console.WriteLine($"| {string.Join(", ", topping)}");
-                        }
+                        Console.WriteLine($"{pizza.Name}");
+                        Console.WriteLine("-------------------------------------------");
+                        Console.WriteLine($"{string.Join(", ", pizza.Toppings)}");
                     }
-                    Console.WriteLine($"| Total price: {orders[i].CalculateTotalPrice()}");
-                    Console.WriteLine("|-------------------------------------------");
+                    Console.WriteLine($"Total price: {orders[i].CalculateTotalPrice()}");
+                    Console.WriteLine("-------------------------------------------");
                 }
             }
             else
