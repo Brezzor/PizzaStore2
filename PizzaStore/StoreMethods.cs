@@ -5,9 +5,45 @@ using System.Text;
 namespace PizzaStore2
 {
     class StoreMethods
-    {
-        //private static int menuNum;
-        //private static bool correctCommand;
+    {        
+        private static List<string> menuChoices = new List<string>()
+        {
+            "[1]: Show Menu",
+            "[2]: Create Order",
+            "[3]: Show Orders",
+            "[0]: Exit"
+        };
+
+        public static List<string> GetMenuChoices()
+        {
+            return menuChoices;
+        }
+
+        public static void PrintMenuChoices()
+        {
+            foreach (string s in menuChoices)
+            {
+                Console.WriteLine(s);
+            }
+        }
+
+        public static void PrintIntro()
+        {
+            Console.Clear();
+            Console.WriteLine("---- Pizza Store ----");
+            Console.WriteLine("\nOptions:");
+            PrintMenuChoices();
+            Console.WriteLine("Type the number of what you would like to do");
+            Console.Write("Command: ");
+        }
+
+        public static int MenuChoice()
+        {
+            PrintIntro();
+            int result = StoreMethods.ParseInt();
+            return result;
+        }
+        
         public static void CreateOrder()
         {
             Menu.PrintMenu();
