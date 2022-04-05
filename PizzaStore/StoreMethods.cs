@@ -31,7 +31,7 @@ namespace PizzaStore2
 
         public static int PizzaChoice()
         {
-            Menu.PrintMenu();
+            MenuCatalog.PrintMenu();
             return ParseInt();
         }
 
@@ -81,11 +81,11 @@ namespace PizzaStore2
 
         public static void CreateOrder()
         {
-            Menu.PrintMenu();
+            MenuCatalog.PrintMenu();
             Console.Write("Choose a pizza: ");            
             int menuNum = ParseInt();
             Console.WriteLine();
-            Pizza pizza = Menu.GetPizza(menuNum);
+            Pizza pizza = MenuCatalog.GetPizza(menuNum);
 
             if (pizza != null)
             {

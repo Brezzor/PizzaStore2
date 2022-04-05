@@ -21,7 +21,7 @@ namespace PizzaStore2
                 {
                     case "Show Menu":
                         Console.Clear();
-                        Menu.PrintMenu();
+                        MenuCatalog.PrintMenu();
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;

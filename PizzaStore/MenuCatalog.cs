@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PizzaStore2
 {
-    class Menu
+    class MenuCatalog
     {
         private static List<Pizza> menu = new List<Pizza>()
         {
