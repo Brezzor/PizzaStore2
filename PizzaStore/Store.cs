@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Store
-    {
-        static string Input;
-        static int Choice;
-        static int menuNum;
-        static bool correctCommand = false;
+    {       
         static bool _exit = false;
 
         private static List<string> menuChoices = new List<string>()
@@ -18,7 +14,12 @@ namespace PizzaStore
             "[2]: Create Order",
             "[3]: Show Orders",
             "[0]: Exit"
-        };        
+        };   
+        
+        public static List<string> GetMenuChoices()
+        {
+            return menuChoices;
+        }
 
         private static void PrintMenuChoices()
         {
@@ -37,98 +38,43 @@ namespace PizzaStore
             Console.Write("Command: ");
         }
 
+        private static int MenuChoice()
+        {
+            PrintIntro();
+            int result = StoreMethods.ParseInt();
+            return result;
+        }
+
         public static void Start()
         {            
             while (!_exit)
             {
-                PrintIntro();
-                Input = Console.ReadLine();
-                if (int.TryParse(Input, out Choice))
+                int menuChoice = MenuChoice();
+                switch (menuChoice)
                 {
-                    switch (Choice)
-                    {
-                        case 1:
-                            Menu.PrintMenu();
-                            Console.Write("\nPress any key to continue");
-                            Console.ReadKey();
-                            break;
-                        case 2:
-                            CreateOrder();
-                            break;
-                        case 3:
-                            Order.PrintOrders();
-                            Console.Write("\nPress any key to continue");
-                            Console.ReadKey();
-                            break;
-                        case 0:
-                            _exit = true;
-                            break;
-                        default:
-                            Console.WriteLine("Inavlid command!");
-                            Console.WriteLine("Command is not possible");
-                            Console.Write("Press any key to continue");
-                            Console.ReadKey();
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Inavlid command!");
-                    Console.WriteLine("Command has to be a number");
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
+                    case 1:
+                        Menu.PrintMenu();
+                        Console.Write("\nPress any key to continue");
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        StoreMethods.CreateOrder();
+                        break;
+                    case 3:
+                        Order.PrintOrders();
+                        Console.Write("\nPress any key to continue");
+                        Console.ReadKey();
+                        break;
+                    case 0:
+                        _exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("\nInvalid command!");                        
+                        Console.Write("Press any key to continue");
+                        Console.ReadKey();
+                        break;
                 }
             }
         }
-
-        private static void CreateOrder()
-        {
-            Menu.PrintMenu();
-            Console.WriteLine("\nWhat's number of pizza, would you like?");
-
-            while (!correctCommand)
-            {
-                Console.Write("\nPizza number: ");
-                while (!int.TryParse(Console.ReadLine(), out menuNum))
-                {
-                    Console.WriteLine("Invalid number!");
-                    Console.WriteLine("Has to be a number");
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
-                    Console.Write("\nPizza number: ");
-                }
-                if (menuNum <= Menu.LastIndexNum())
-                {
-                    correctCommand = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid number!");
-                    Console.WriteLine("Has to be on the menu");
-                    Console.Write("Press any key to continue");
-                    Console.ReadKey();
-                }
-            }
-            correctCommand = false;
-
-            Pizza pizza = Menu.GetPizza(menuNum);
-            List<Pizza> pizzas = new List<Pizza>();
-            pizzas.Add(pizza);
-
-            Console.WriteLine("\n-- Customer info --");
-            Console.Write("First name: ");
-            string firstName = Console.ReadLine();
-            Console.Write("Last name: ");
-            string lastName = Console.ReadLine();
-
-            Customer customer = new Customer { FirstName = firstName, LastName = lastName };
-
-            Order order = new Order(customer, pizzas);
-
-            order.PrintOrder();
-
-            Console.Write("\nPress any key to continue");
-            Console.ReadKey();
-        }
-    }
+    }        
 }

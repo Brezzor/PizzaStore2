@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Order
     {
+        private static List<Order> orders = new List<Order>();
         private Customer _customer;
         private static List<Pizza> _pizzas;
-        private static List<Order> orders = new List<Order>();
         private int _orderNum = orders.Count;
-        private double _tax = 1.25;
-        private double _deliveryCost = 40;
-        public Order(Customer customer, List<Pizza> pizzas)
-        {
-            _customer = customer;
-            _pizzas = pizzas;
+        private const double _tax = 1.25;
+        private const double _deliveryCost = 40;
+        public Order()
+        {            
             orders.Add(this);            
-        }       
+        }
+
+        public Customer Customer { get { return _customer; } set { _customer = value; } }
+        public List<Pizza> Pizzas { get { return _pizzas; } set { _pizzas = value; } }
         private int OrderNum { get { return _orderNum + 1; } }              
         private double CalculateTotalPrice()
         {

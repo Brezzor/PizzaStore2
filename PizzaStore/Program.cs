@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Program
     {        
@@ -10,7 +10,7 @@ namespace PizzaStore
         {            
             Store.Start();
 
-            Console.WriteLine("Press any key to terminate program!");
+            Console.WriteLine("\nPress any key to terminate program!");
             Console.ReadKey();
         }
     }

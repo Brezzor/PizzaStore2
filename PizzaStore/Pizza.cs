@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Pizza
     {        
@@ -13,8 +13,7 @@ namespace PizzaStore
         private double _price;
 
         public Pizza()
-        {            
-            _name = "";
+        {                        
             _price = _basePrice;                      
         }
         

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Customer
     {

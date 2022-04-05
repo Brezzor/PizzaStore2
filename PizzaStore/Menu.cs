@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PizzaStore
+namespace PizzaStore2
 {
     class Menu
     {
@@ -42,7 +42,14 @@ namespace PizzaStore
         }           
         public static Pizza GetPizza(int num)
         {
-            return menu[num];
+            if (num < 0 || num > LastIndexNum())
+            {
+                return null;
+            }
+            else
+            {
+                return menu[num];
+            }            
         }        
         public static int LastIndexNum()
         {
