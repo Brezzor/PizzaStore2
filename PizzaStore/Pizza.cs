@@ -5,7 +5,8 @@ using System.Text;
 namespace PizzaStore2
 {
     class Pizza
-    {        
+    {
+        private int _id;
         private string _name;        
         private List<string> _toppings = new List<string>();
         private const int _toppingPrice = 5;
@@ -16,7 +17,8 @@ namespace PizzaStore2
         {                        
             _price = _basePrice;                      
         }
-        
+        public int Id { get { return _id; } set { _id = value; } }
+
         public string Name { get { return _name; } set { _name = value; } }
 
         public List<string> Toppings { get { return _toppings; } set { _toppings = value; } }       
@@ -32,6 +34,14 @@ namespace PizzaStore2
                 }
                 return _price + toppingPrice;
             } 
+        }
+
+        public void PrintPizza()
+        {            
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Nr.{Id} | {Name} | price: {Price}kr.");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"{string.Join(", ", Toppings)}");            
         }
     }
 }

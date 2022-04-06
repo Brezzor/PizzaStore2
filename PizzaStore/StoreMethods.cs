@@ -8,22 +8,24 @@ namespace PizzaStore2
     {
         private static bool done = false;
         public static int menuIndex = 0;
-        private static Customer newCustomer = new Customer();
-        private static List<Pizza> pizzas = new List<Pizza>();        
+        private static Customer newCustomer;
+        private static List<Pizza> orderPizzas;
+        private static Order newOrder;
 
-        public static List<string> menuChoices = new List<string>()
+        public static List<string> mainMenuChoices = new List<string>()
         {
             "Show Menu",
-            "Create Order",
+            "Order Pizza",
             "Show Orders",
             "Exit"
         };
 
-        public static List<string> subMenuChoices = new List<string>()
+        public static List<string> orderMenuChoices = new List<string>()
         {
             "Add Pizza",
             "Remove Pizza",
             "Edit Pizza",
+            "Show Order",
             "Create",
             "Cancel"
         };
@@ -33,7 +35,7 @@ namespace PizzaStore2
             Console.WriteLine("¤-------------¤");
             Console.WriteLine("| Pizza Store |");
             Console.WriteLine("¤-------------¤");
-            Console.WriteLine("\nCommands: ");                      
+            Console.WriteLine();                      
         }
 
         public static void PrintOrderIntro()
@@ -44,10 +46,11 @@ namespace PizzaStore2
             Console.WriteLine();
         }
 
-        public static string MenuChoice()
+        public static string ParseMenuChoice()
         {
             PrintIntro();
-            return ParseString(menuChoices);
+            Console.WriteLine("Commands:");
+            return MenuChoice(mainMenuChoices);
         }
 
         public static int PizzaChoice()
@@ -59,7 +62,7 @@ namespace PizzaStore2
         private static int ParseInt()
         {
             string input = Console.ReadKey().KeyChar.ToString();
-
+            Console.WriteLine();
             try
             {
                 int result = int.Parse(input);
@@ -67,114 +70,168 @@ namespace PizzaStore2
             }
             catch (FormatException)
             {
-                Console.WriteLine($"\nInput was in wrong format");
+                Console.WriteLine($"Input was in wrong format. Input has to be a number");                
             }
             catch (ArgumentOutOfRangeException)
             {
-                Console.WriteLine($"\nInput was out of range");
+                Console.WriteLine($"Input was out of range");               
             }
             return -1;
         }
 
-        public static string ParseString(List<string> choices)
-        {            
-            for (int i = 0; i < choices.Count; i++)
-            {
-                if (i == menuIndex)
-                {
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine(choices[i]);
-                }
-                else
-                {
-                    Console.WriteLine(choices[i]);
-                }
-                Console.ResetColor();
-            }
+        public static string MenuChoice(List<string> choices)
+        {
+            bool choosen = false;
 
-            ConsoleKeyInfo ckey = Console.ReadKey();
-            switch (ckey.Key)
+            while (!choosen)
             {
-                case ConsoleKey.DownArrow:
-                    if (menuIndex == choices.Count -1) { }
-                    else { menuIndex++; }
-                    break;
-                case ConsoleKey.UpArrow:
-                    if (menuIndex <= 0) { }
-                    else { menuIndex--; }
-                    break;
-                case ConsoleKey.LeftArrow:
-                    Console.Clear();
-                    break;
-                case ConsoleKey.RightArrow:
-                    Console.Clear();
-                    break;
-                case ConsoleKey.Enter:                    
-                    return choices[menuIndex];                    
-                default:                    
-                    return "";                    
+                for (int i = 0; i < choices.Count; i++)
+                {
+                    if (i == menuIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(choices[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(choices[i]);
+                    }
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo ckey = Console.ReadKey();
+                switch (ckey.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        if (menuIndex == choices.Count - 1) { }
+                        else { menuIndex++; }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (menuIndex <= 0) { }
+                        else { menuIndex--; }
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        Console.Clear();
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Console.Clear();
+                        break;
+                    case ConsoleKey.Enter:
+                        choosen = true;
+                        return choices[menuIndex];
+                    default:
+                        return "";
+                }
+                Console.Clear();
+                return "";
             }
-            
-            Console.Clear();
-            return "";
+            return choices[menuIndex];
         }
 
-        public static void CreateOrder()
+        public static void OrderPizza()
         {
             done = false;
+            newCustomer = new Customer();
+            orderPizzas = new List<Pizza>();
+            Console.Clear();
+            PrintOrderIntro();
+            CreateCustomer();            
             menuIndex = 0;            
 
             while (!done)
-            {
+            {                
                 Console.Clear();
                 PrintOrderIntro();
+                Console.WriteLine("Commands:");
                 Console.CursorVisible = false;                
-                string subMenuChoice = ParseString(subMenuChoices);
+                string subMenuChoice = MenuChoice(orderMenuChoices);
 
                 switch (subMenuChoice)
                 {
-                    case "Add Pizza":                        
-                        Console.Clear();
-                        MenuCatalog.PrintMenu();
-                        Console.Write("\nPizza number: ");
-                        int choice = ParseInt();
-                        Pizza newPizza = MenuCatalog.GetPizza(choice);
-                        pizzas.Add(newPizza);
-                        Console.WriteLine($"{newPizza.Name} has been added to the order");
-                        Console.WriteLine("\nPress any key to continue");
-                        Console.ReadKey();
-                        menuIndex = 0;
+                    case "Add Pizza":
+                        AddPizza();
                         break;
                     case "Remove Pizza":
                         Console.Clear();
                         menuIndex = 0;
                         break;
                     case "Edit Pizza":
-                        Console.Clear();
+                        Console.Clear();                        
+                        menuIndex = 0;
+                        break;
+                    case "Show Order":
+                        if (newOrder != null)
+                        {
+                            newOrder.PrintOrder();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nNo order made yet");
+                        }
+                        Console.WriteLine("\nPress any key to continue");
+                        Console.ReadKey();
                         menuIndex = 0;
                         break;
                     case "Create":
                         Console.Clear();
                         Console.CursorVisible = true;
-                        Console.Write("Write your firstname: ");
-                        newCustomer.FirstName = Console.ReadLine();
-                        Console.Write("\nWrite your lastname: ");
-                        newCustomer.LastName = Console.ReadLine();
-                        Order newOrder = new Order{ Customer = newCustomer, Pizzas = pizzas};
-                        newOrder.PrintOrder();
-                        Console.WriteLine("Order has been created");
+                        if (orderPizzas != null || orderPizzas.Count <= 0)
+                        {                            
+                            newOrder = new Order{ Customer = newCustomer, Pizzas = orderPizzas };
+                            newOrder.PrintOrder();
+                            Console.WriteLine("\nOrder has been created");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No pizzas was added to the order");
+                            Console.WriteLine("No order was created");
+                        }
                         Console.WriteLine("\nPress any key to continue");
                         Console.ReadKey();
                         done = true;
-                        menuIndex = 0;
+                        menuIndex = 0;                                               
                         break;
-                    case "Cancel":                                                 
+                    case "Cancel":                        
                         done = true;
                         menuIndex = 0;
                         break;
                 }
             }            
-        }                
+        }
+        
+        private static void AddPizza()
+        {
+            Console.Clear();
+            Console.CursorVisible = true;
+            MenuCatalog.PrintMenu();
+            Console.WriteLine("Choose a pizza");
+            Console.Write("\nPizza number: ");
+            int choice = ParseInt();
+            Pizza pizza = MenuCatalog.GetPizza(choice);
+            if (pizza != null)
+            {
+                orderPizzas.Add(pizza);
+                pizza.PrintPizza();
+            }
+            else
+            {
+                Console.WriteLine("No pizza chosen");
+            }
+            Console.WriteLine("\nPress any key to continue");
+            Console.ReadKey();
+            menuIndex = 0;                                  
+        }
+
+        private static void CreateCustomer()
+        {
+            Console.CursorVisible = true;
+            Console.Write("Write your firstname: ");
+            string firstName = Console.ReadLine();            
+            Console.Write("Write your lastname: ");
+            string lastName = Console.ReadLine();
+            newCustomer = new Customer { FirstName = firstName, LastName = lastName };
+            Console.CursorVisible = false;
+        }
     }
 }

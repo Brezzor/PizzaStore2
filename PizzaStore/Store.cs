@@ -14,7 +14,7 @@ namespace PizzaStore2
             {                
                 Console.Clear();
                 Console.CursorVisible = false;
-                string menuChoice = StoreMethods.MenuChoice();
+                string menuChoice = StoreMethods.ParseMenuChoice();
 
                 switch (menuChoice)
                 {
@@ -25,10 +25,10 @@ namespace PizzaStore2
                         Console.Write("\nPress any key to continue");
                         Console.ReadKey();
                         break;
-                    case "Create Order":
+                    case "Order Pizza":
                         StoreMethods.menuIndex = 0;
                         Console.Clear();
-                        StoreMethods.CreateOrder();
+                        StoreMethods.OrderPizza();
                         break;
                     case "Show Orders":
                         StoreMethods.menuIndex = 0;
@@ -40,6 +40,7 @@ namespace PizzaStore2
                     case "Exit":
                         done = true;
                         Console.Clear();
+                        StoreMethods.PrintIntro();
                         Console.WriteLine("Closing program...");
                         Thread.Sleep(1000);
                         Environment.Exit(0);

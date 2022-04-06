@@ -1,52 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PizzaStore2
 {
     class MenuCatalog
     {
-        private static List<Pizza> menu = new List<Pizza>()
+        private static Dictionary<int,Pizza> menu = new Dictionary<int, Pizza>()
         {
-            new Pizza { Name = "Pepperoni pizza", Toppings = {"Sauce", "Cheese", "Pepperoni"} },
-            new Pizza { Name = "Hawaian pizza", Toppings = {"Sauce", "Cheese", "Ham", "Pineapple" } },
-            new Pizza { Name = "Italien pizza", Toppings = { "Sauce", "Cheese", "Meatballs", "Chili"} },
-            new Pizza { Name = "Vegetarien pizza", Toppings = { "Sauce", "Cheese", "Mushrooms", "Pepers", "White Asparagus"} }
+            { 1 , new Pizza { Id = 1, Name = "Pepperoni pizza", Toppings = {"Sauce", "Cheese", "Pepperoni"} } },
+            { 2 , new Pizza { Id = 2, Name = "Hawaian pizza", Toppings = {"Sauce", "Cheese", "Ham", "Pineapple" } } },
+            { 3 , new Pizza { Id = 3, Name = "Italien pizza", Toppings = { "Sauce", "Cheese", "Meatballs", "Chili"} } },
+            { 4 , new Pizza { Id = 4, Name = "Vegetarien pizza", Toppings = { "Sauce", "Cheese", "Mushrooms", "Pepers", "White Asparagus"} } }
         };
 
-        public static void CreatePizza(string name, List<string> toppings)
+        public static void EditPizza(Pizza pizza)
         {
-            menu.Add(new Pizza { Name = name, Toppings = toppings });
+            menu[pizza.Id] = pizza;
+        }
+
+        public static void AddPizza(Pizza pizza)
+        {
+            menu.Add(pizza.Id, pizza);
         }        
 
         public static void DeletePizza(int num)
-        {
-            Pizza pizza = GetPizza(num);
-            menu.Remove(pizza);
+        {            
+            menu.Remove(num);
         }                
         
         public static void PrintMenu()
-        {            
-            Console.WriteLine("---------- Pizza menu ------------");            
-            for (int i = 0; i < menu.Count; i++)
+        {
+            Console.WriteLine("¤--------------------¤");
+            Console.WriteLine("| Pizza Menu Catalog |");
+            Console.WriteLine("¤--------------------¤");
+            Console.WriteLine();
+            foreach (var p in menu)
             {
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine($"Nr.{i} | {menu[i].Name} | price: {menu[i].Price}kr.");
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine($"{string.Join(", ", menu[i].Toppings)}");
-                Console.WriteLine("----------------------------------");
-            }            
+                p.Value.PrintPizza();
+            }
+            Console.WriteLine("----------------------------------");
         }           
         public static Pizza GetPizza(int num)
-        {
-            if (num < 0 || num > LastIndexNum())
-            {
-                return null;
-            }
-            else
-            {
+        {            
+            try
+            {                                
                 return menu[num];
-            }            
+            }
+            catch (KeyNotFoundException)
+            {                
+                Console.WriteLine($"'{num}' does'nt exist");                
+                return null;
+            }                                             
         }        
         public static int LastIndexNum()
         {
