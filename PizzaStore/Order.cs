@@ -6,9 +6,9 @@ namespace PizzaStore2
 {
     class Order
     {
-        private static List<Order> orders;
-        private Customer _customer;
-        private static List<Pizza> _pizzas;        
+        private static List<Order> orders = new List<Order>();
+        private Customer _customer = new Customer();
+        private static List<Pizza> _pizzas = new List<Pizza>();        
         private const double _tax = 1.25;
         private const double _deliveryCost = 40;
         public Order()
@@ -50,11 +50,11 @@ namespace PizzaStore2
             Console.WriteLine("¤--------------¤");
             Console.WriteLine();
 
-            if (_pizzas != null)
+            if (_pizzas != null && _pizzas.Count != 0)
             {
                 for (int i = 0; i < orders.Count; i++)
                 {
-                    Console.WriteLine($"---- Pizza order {i} ----");
+                    Console.WriteLine($"---- Pizza Order {i} ----");
                     Console.WriteLine($"First name: {orders[i]._customer.FirstName}");
                     Console.WriteLine($"Last name: {orders[i]._customer.LastName}");
                     Console.WriteLine("-------------------------------------------");

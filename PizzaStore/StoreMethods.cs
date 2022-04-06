@@ -14,7 +14,7 @@ namespace PizzaStore2
 
         public static List<string> mainMenuChoices = new List<string>()
         {
-            "Show Menu",
+            "Show Menu",            
             "Order Pizza",
             "Show Orders",
             "Exit"
@@ -68,65 +68,54 @@ namespace PizzaStore2
                 int result = int.Parse(input);
                 return result;
             }
-            catch (FormatException)
+            catch (Exception)
             {
                 Console.WriteLine($"Input was in wrong format. Input has to be a number");                
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Console.WriteLine($"Input was out of range");               
-            }
+            }            
             return -1;
         }
 
         public static string MenuChoice(List<string> choices)
         {
-            bool choosen = false;
-
-            while (!choosen)
+            for (int i = 0; i < choices.Count; i++)
             {
-                for (int i = 0; i < choices.Count; i++)
+                if (i == menuIndex)
                 {
-                    if (i == menuIndex)
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine(choices[i]);
-                    }
-                    else
-                    {
-                        Console.WriteLine(choices[i]);
-                    }
-                    Console.ResetColor();
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine(choices[i]);
                 }
-
-                ConsoleKeyInfo ckey = Console.ReadKey();
-                switch (ckey.Key)
+                else
                 {
-                    case ConsoleKey.DownArrow:
-                        if (menuIndex == choices.Count - 1) { }
-                        else { menuIndex++; }
-                        break;
-                    case ConsoleKey.UpArrow:
-                        if (menuIndex <= 0) { }
-                        else { menuIndex--; }
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.RightArrow:
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.Enter:
-                        choosen = true;
-                        return choices[menuIndex];
-                    default:
-                        return "";
+                    Console.WriteLine(choices[i]);
                 }
-                Console.Clear();
-                return "";
+                Console.ResetColor();
             }
-            return choices[menuIndex];
+
+            ConsoleKeyInfo ckey = Console.ReadKey();
+            switch (ckey.Key)
+            {
+                case ConsoleKey.DownArrow:
+                    if (menuIndex == choices.Count - 1) { }
+                    else { menuIndex++; }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (menuIndex <= 0) { }
+                    else { menuIndex--; }
+                    break;
+                case ConsoleKey.LeftArrow:
+                    Console.Clear();
+                    break;
+                case ConsoleKey.RightArrow:
+                    Console.Clear();
+                    break;
+                case ConsoleKey.Enter:                    
+                    return choices[menuIndex];
+                default:
+                    return "";
+            }
+            Console.Clear();
+            return "";
         }
 
         public static void OrderPizza()
@@ -161,7 +150,7 @@ namespace PizzaStore2
                         menuIndex = 0;
                         break;
                     case "Show Order":
-                        if (newOrder != null)
+                        if (orderPizzas != null && orderPizzas.Count != 0)
                         {
                             newOrder.PrintOrder();
                         }
@@ -176,7 +165,7 @@ namespace PizzaStore2
                     case "Create":
                         Console.Clear();
                         Console.CursorVisible = true;
-                        if (orderPizzas != null || orderPizzas.Count <= 0)
+                        if (orderPizzas != null && orderPizzas.Count != 0)
                         {                            
                             newOrder = new Order{ Customer = newCustomer, Pizzas = orderPizzas };
                             newOrder.PrintOrder();
@@ -211,7 +200,7 @@ namespace PizzaStore2
             Pizza pizza = MenuCatalog.GetPizza(choice);
             if (pizza != null)
             {
-                orderPizzas.Add(pizza);
+                orderPizzas.Add(pizza);                
                 pizza.PrintPizza();
             }
             else

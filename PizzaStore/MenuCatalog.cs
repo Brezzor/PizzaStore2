@@ -50,9 +50,9 @@ namespace PizzaStore2
             }
             catch (KeyNotFoundException)
             {                
-                Console.WriteLine($"'{num}' does'nt exist");                
+                Console.WriteLine($"'{num}' does'nt exist");
                 return null;
-            }                                             
+            }            
         }        
         public static int LastIndexNum()
         {
