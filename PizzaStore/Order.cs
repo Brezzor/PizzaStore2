@@ -6,7 +6,7 @@ namespace PizzaStore2
 {
     class Order
     {
-        private static List<Order> orders = new List<Order>();
+        public static List<Order> _orders = new List<Order>();
         private Customer _customer = new Customer();
         private static List<Pizza> _pizzas = new List<Pizza>();        
         private const double _tax = 1.25;
@@ -15,7 +15,7 @@ namespace PizzaStore2
         {
             if (this != null)
             {
-                orders.Add(this);
+                _orders.Add(this);
             }            
         }
 
@@ -52,11 +52,11 @@ namespace PizzaStore2
 
             if (_pizzas != null && _pizzas.Count != 0)
             {
-                for (int i = 0; i < orders.Count; i++)
+                for (int i = 0; i < _orders.Count; i++)
                 {
                     Console.WriteLine($"---- Pizza Order {i} ----");
-                    Console.WriteLine($"First name: {orders[i]._customer.FirstName}");
-                    Console.WriteLine($"Last name: {orders[i]._customer.LastName}");
+                    Console.WriteLine($"First name: {_orders[i]._customer.FirstName}");
+                    Console.WriteLine($"Last name: {_orders[i]._customer.LastName}");
                     Console.WriteLine("-------------------------------------------");
                     foreach (Pizza pizza in _pizzas)
                     {
@@ -64,7 +64,7 @@ namespace PizzaStore2
                         Console.WriteLine("-------------------------------------------");
                         Console.WriteLine($"{string.Join(", ", pizza.Toppings)}");
                     }
-                    Console.WriteLine($"Total price: {orders[i].CalculateTotalPrice()}");
+                    Console.WriteLine($"Total price: {_orders[i].CalculateTotalPrice()}");
                     Console.WriteLine("-------------------------------------------");
                 }
             }
