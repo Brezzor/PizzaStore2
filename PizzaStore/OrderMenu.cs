@@ -6,7 +6,7 @@ namespace PizzaStore2
 {
     class OrderMenu
     {
-        private static Customer newCustomer;
+        private static Customer newCustomer = new Customer();
         private static Order newOrder;
         private static List<Pizza> orderPizzas = new List<Pizza>();
 
@@ -40,7 +40,7 @@ namespace PizzaStore2
                 switch (subMenuChoice)
                 {
                     case "Add Pizza":
-                        StoreMethods.AddPizza();
+                        AddPizza();
                         break;
                     case "Remove Pizza":
                         Console.Clear();
@@ -51,7 +51,10 @@ namespace PizzaStore2
                     case "Show Order":
                         if (orderPizzas != null && orderPizzas.Count != 0)
                         {
-                            newOrder.PrintOrder();
+                            foreach (Pizza pizza in orderPizzas)
+                            {
+                                pizza.PrintPizza();
+                            }
                         }
                         else
                         {
@@ -65,6 +68,7 @@ namespace PizzaStore2
                         Console.CursorVisible = true;
                         if (orderPizzas != null && orderPizzas.Count != 0)
                         {
+                            newCustomer = CreateCustomer();
                             newOrder = new Order { Customer = newCustomer, Pizzas = orderPizzas };
                             newOrder.PrintOrder();
                             Console.WriteLine("\nOrder has been created");
@@ -83,6 +87,39 @@ namespace PizzaStore2
                         break;
                 }
             }
+        }
+
+        private static void AddPizza()
+        {
+            Console.Clear();
+            Console.CursorVisible = true;
+            MenuCatalog.PrintMenu();
+            Console.WriteLine("Choose a pizza");
+            Console.Write("\nPizza number: ");
+            int choice = StoreMethods.ParseInt();
+            Pizza pizza = new Pizza();
+            pizza = MenuCatalog.GetPizza(choice);
+            if (pizza != null)
+            {
+                orderPizzas.Add(pizza);
+                pizza.PrintPizza();
+            }
+            else
+            {
+                Console.WriteLine("No pizza chosen");
+            }
+            Console.WriteLine("\nPress any key to continue");
+            Console.ReadKey();
+        }
+
+        private static Customer CreateCustomer()
+        {
+            Console.CursorVisible = true;
+            Console.Write("Write your firstname: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Write your lastname: ");
+            string lastName = Console.ReadLine();
+            return new Customer { FirstName = firstName, LastName = lastName };
         }
     }
 }
