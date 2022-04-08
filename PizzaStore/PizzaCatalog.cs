@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PizzaStore2
 {
-    class MenuCatalog
+    class PizzaCatalog
     {
         private static Dictionary<int,Pizza> menu = new Dictionary<int, Pizza>()
         {
@@ -26,34 +26,46 @@ namespace PizzaStore2
         }        
 
         public static void DeletePizza(int num)
-        {            
-            menu.Remove(num);
+        {
+            if (menu.ContainsKey(num))
+            {
+                menu.Remove(num);
+            }
+            else if (menu == null || menu.Count <= 0)
+            {
+                Console.WriteLine("\n Pizza Catalog is empty");
+            }
+            else
+            {
+                Console.WriteLine($"\n '{num}' does'nt exist");
+            }
         }                
         
         public static void PrintMenu()
         {
-            Console.WriteLine("¤--------------------¤");
-            Console.WriteLine("| Pizza Menu Catalog |");
-            Console.WriteLine("¤--------------------¤");
+            Console.WriteLine(" ¤--------------------¤");
+            Console.WriteLine(" | Pizza Menu Catalog |");
+            Console.WriteLine(" ¤--------------------¤");
             Console.WriteLine();
             foreach (var p in menu)
             {
                 p.Value.PrintPizza();
             }
-            Console.WriteLine("----------------------------------");
+            Console.WriteLine(" ----------------------------------");
         }           
         public static Pizza GetPizza(int num)
-        {            
-            try
-            {                                
+        {
+            if (menu.ContainsKey(num))
+            {
                 return menu[num];
             }
-            catch (KeyNotFoundException)
-            {                
-                Console.WriteLine($"'{num}' does'nt exist");
+            else
+            {
+                Console.WriteLine($" '{num}' does'nt exist");
                 return null;
-            }            
-        }        
+            }
+        }  
+        
         public static int LastIndexNum()
         {
             return menu.Count - 1;

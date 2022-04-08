@@ -10,8 +10,7 @@ namespace PizzaStore2
         private string _lastName;
         public Customer()
         {
-            _firstName = "";
-            _lastName = "";
+            
         }
         public string FirstName { get { return _firstName; } set { _firstName = value; } }
         public string LastName { get { return _lastName; } set { _lastName = value; } }

@@ -16,14 +16,14 @@ namespace PizzaStore2
                 int result = int.Parse(input);
                 return result;
             }
-            catch (Exception)
+            catch (FormatException)
             {
-                Console.WriteLine($"Input was in wrong format. Input has to be a number");                
+                Console.WriteLine($" '{input}' was in wrong format. Input has to be a number");                
             }            
             return -1;
         }
 
-        public static string PrintMenuChoices(List<string> choices, string topText)
+        public static int PrintMenuChoices(List<string> choices, string topText)
         {
             int menuIndex = 0;            
             ConsoleKey ckey;
@@ -37,14 +37,13 @@ namespace PizzaStore2
                 for (int i = 0; i < choices.Count; i++)
                 {
                     if (i == menuIndex)
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkCyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine(choices[i]);
+                    {                        
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($">{choices[i]}<");
                     }
                     else
                     {
-                        Console.WriteLine(choices[i]);
+                        Console.WriteLine($" {choices[i]} ");
                     }
                     Console.ResetColor();
                 }                
@@ -66,7 +65,7 @@ namespace PizzaStore2
             } while (ckey != ConsoleKey.Enter);
 
             Console.CursorVisible = true;
-            return choices[menuIndex];
+            return menuIndex + 1;
         }               
     }
 }

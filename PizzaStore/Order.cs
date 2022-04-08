@@ -31,46 +31,43 @@ namespace PizzaStore2
             return result * _tax + _deliveryCost;
         }
         public void PrintOrder()
-        {
-            Console.WriteLine($"\n---- Pizza order ----");
-            Console.WriteLine($"First name: {Customer.FirstName}");
-            Console.WriteLine($"Last name: {Customer.LastName}");
-            Console.WriteLine("---------------------------------");
-            Console.WriteLine("Pizzas ordered:");
+        {            
+            Console.WriteLine($" First name: {Customer.FirstName}");
+            Console.WriteLine($" Last name: {Customer.LastName}");
+            Console.WriteLine(" ---------------------------------");
+            Console.WriteLine(" Pizzas ordered:");
             foreach (Pizza pizza in _pizzas)
             {
                 pizza.PrintPizza();                
             }
-            Console.WriteLine($"Total price: {CalculateTotalPrice()}");
+            Console.WriteLine($" Total price: {CalculateTotalPrice()}");
         }
         public static void PrintOrders()
         {
-            Console.WriteLine("¤--------------¤");
-            Console.WriteLine("| Pizza Orders |");
-            Console.WriteLine("¤--------------¤");
+            Console.WriteLine(" ¤--------------¤");
+            Console.WriteLine(" | Pizza Orders |");
+            Console.WriteLine(" ¤--------------¤");
             Console.WriteLine();
 
             if (_pizzas != null && _pizzas.Count != 0)
             {
                 for (int i = 0; i < _orders.Count; i++)
                 {
-                    Console.WriteLine($"---- Pizza Order {i} ----");
-                    Console.WriteLine($"First name: {_orders[i]._customer.FirstName}");
-                    Console.WriteLine($"Last name: {_orders[i]._customer.LastName}");
-                    Console.WriteLine("-------------------------------------------");
+                    Console.WriteLine($" ---- Pizza Order {i} ----");
+                    Console.WriteLine($" First name: {_orders[i]._customer.FirstName}");
+                    Console.WriteLine($" Last name: {_orders[i]._customer.LastName}");
+                    Console.WriteLine(" -------------------------------------------");
                     foreach (Pizza pizza in _pizzas)
                     {
-                        Console.WriteLine($"{pizza.Name}");
-                        Console.WriteLine("-------------------------------------------");
-                        Console.WriteLine($"{string.Join(", ", pizza.Toppings)}");
+                        pizza.PrintPizza();
                     }
-                    Console.WriteLine($"Total price: {_orders[i].CalculateTotalPrice()}");
-                    Console.WriteLine("-------------------------------------------");
+                    Console.WriteLine($" Total price: {_orders[i].CalculateTotalPrice()}");
+                    Console.WriteLine(" -------------------------------------------");
                 }
             }
             else
             {
-                Console.WriteLine("No Orders made!");
+                Console.WriteLine(" No Orders made!");
             }
         }
     }
