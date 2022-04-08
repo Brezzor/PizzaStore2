@@ -14,7 +14,7 @@ namespace PizzaStore2
             return text;
         }
 
-        private static List<string> orderMenuChoices = new List<string>()
+        private static List<string> updateCatalogChoices = new List<string>()
         {
             "Edit Pizza",
             "Add Pizza",
@@ -29,7 +29,7 @@ namespace PizzaStore2
             while (!done)
             {
                 Console.Clear();
-                int subMenuChoice = StoreMethods.PrintMenuChoices(orderMenuChoices, topText());
+                int subMenuChoice = StoreMethods.PrintMenuChoices(updateCatalogChoices, topText());
 
                 switch (subMenuChoice)
                 {
