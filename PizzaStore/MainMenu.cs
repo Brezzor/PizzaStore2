@@ -17,7 +17,8 @@ namespace PizzaStore2
 
         private static List<string> mainMenuChoices = new List<string>()
         {
-            "Show Catalog",
+            "Show" +
+            "Catalog",
             "Edit Catalog",
             "Order Pizza",
             "Show Orders",
