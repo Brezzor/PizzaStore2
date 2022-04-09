@@ -52,7 +52,7 @@ namespace PizzaStore2
                         ShowPizza();
                         break;
                     case 5:
-                        CreatePizza()
+                        CreatePizza();
                         done = true;
                         break;
                     case 6:
