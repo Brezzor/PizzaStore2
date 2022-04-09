@@ -71,11 +71,6 @@ namespace PizzaStore2
                 Console.WriteLine($" '{num}' does'nt exist");
                 return null;
             }
-        }  
-        
-        public static int LastIndexNum()
-        {
-            return menu.Count - 1;
-        }
+        }                  
     }
 }
