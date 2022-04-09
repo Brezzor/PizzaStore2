@@ -52,7 +52,7 @@ namespace PizzaStore2
                         ShowPizza();
                         break;
                     case 5:
-                        CreatePizza();
+                        CreatePizza()
                         done = true;
                         break;
                     case 6:
@@ -91,6 +91,11 @@ namespace PizzaStore2
             Console.WriteLine($"\n Pizza Name '{_name}' has been chosen");
             Console.Write("\n Press any key to continue");
             Console.ReadKey();
+        }
+
+        public static void UpdateToppings(List<string> toppings)
+        {
+            _newPizza.Toppings = toppings;            
         }
 
         private static void ShowPizza()
