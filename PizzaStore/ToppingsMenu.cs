@@ -17,7 +17,7 @@ namespace PizzaStore2
             return text;
         }
 
-        private static List<string> mainMenuChoices = new List<string>()
+        private static List<string> toppingsMenuChoices = new List<string>()
         {
             "Add Topping",
             "Remove Topping",
@@ -31,7 +31,7 @@ namespace PizzaStore2
 
             while (!done)
             {
-                int menuChoice = StoreMethods.PrintMenuChoices(mainMenuChoices, topText());
+                int menuChoice = StoreMethods.PrintMenuChoices(toppingsMenuChoices, topText());
 
                 switch (menuChoice)
                 {
