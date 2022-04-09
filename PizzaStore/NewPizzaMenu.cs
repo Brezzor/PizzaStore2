@@ -52,10 +52,7 @@ namespace PizzaStore2
                         ShowPizza();
                         break;
                     case 5:
-                        Console.Clear();
-                        Console.WriteLine(topText());
-                        PizzaCatalog.AddPizza(_newPizza);
-                        Console.ReadKey();
+                        CreatePizza();
                         done = true;
                         break;
                     case 6:
@@ -96,7 +93,7 @@ namespace PizzaStore2
             Console.ReadKey();
         }
 
-        public static void UpdateToppings(List<string> toppings)
+        private static void UpdateToppings(List<string> toppings)
         {
             _newPizza.Toppings = toppings;            
         }
@@ -106,6 +103,14 @@ namespace PizzaStore2
             Console.WriteLine(topText());
             _newPizza.PrintPizza();
             Console.Write("\n Press any key to continue");
+            Console.ReadKey();
+        }
+
+        private static void CreatePizza()
+        {
+            Console.Clear();
+            Console.WriteLine(topText());
+            PizzaCatalog.AddPizza(_newPizza);
             Console.ReadKey();
         }
     }
