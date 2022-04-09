@@ -22,7 +22,15 @@ namespace PizzaStore2
 
         public static void AddPizza(Pizza pizza)
         {
-            menu.Add(pizza.Id, pizza);
+            if (menu.ContainsKey(pizza.Id))
+            {
+                Console.WriteLine($"\n Menu already contains pizza with Id '{pizza.Id}'");
+            }
+            else
+            {
+                menu.Add(pizza.Id, pizza);
+                Console.WriteLine($"\n Pizza has been created");                
+            }
         }        
 
         public static void DeletePizza(int num)
@@ -50,8 +58,7 @@ namespace PizzaStore2
             foreach (var p in menu)
             {
                 p.Value.PrintPizza();
-            }
-            Console.WriteLine(" ----------------------------------");
+            }            
         }           
         public static Pizza GetPizza(int num)
         {

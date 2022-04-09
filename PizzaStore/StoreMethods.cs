@@ -9,8 +9,7 @@ namespace PizzaStore2
     {                                  
         public static int ParseInt()
         {
-            string input = Console.ReadKey().KeyChar.ToString();
-            Console.WriteLine();
+            string input = Console.ReadKey().KeyChar.ToString();            
             try
             {
                 int result = int.Parse(input);

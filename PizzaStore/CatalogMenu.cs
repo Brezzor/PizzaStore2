@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PizzaStore2
 {
-    class UpdateCatalogMenu
+    class CatalogMenu
     {
         private static string topText()
         {
@@ -33,15 +33,13 @@ namespace PizzaStore2
 
                 switch (subMenuChoice)
                 {
-                    case 1:  
-                        
-                        Console.WriteLine("\n Press any key to continue");
-                        Console.ReadKey();
-                        break;
-                    case 2:
+                    case 1:
                         Console.Clear();
                         Console.WriteLine("\n Press any key to continue");
                         Console.ReadKey();
+                        break;
+                    case 2:                        
+                        NewPizzaMenu.PrintNewPizzaMenu();                        
                         break;
                     case 3:
                         Console.Clear();
@@ -60,7 +58,7 @@ namespace PizzaStore2
         {
             Console.WriteLine(topText());
             PizzaCatalog.PrintMenu();
-            Console.Write("¨\n Choose a number: ");
+            Console.Write("\n Choose a number: ");
             PizzaCatalog.DeletePizza(StoreMethods.ParseInt());
         }
     }

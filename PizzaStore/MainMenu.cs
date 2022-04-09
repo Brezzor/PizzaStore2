@@ -41,7 +41,7 @@ namespace PizzaStore2
                         Console.ReadKey();
                         break;
                     case 2:
-                        UpdateCatalogMenu.PrintEditPizzaCatalogMenu();
+                        CatalogMenu.PrintEditPizzaCatalogMenu();
                         break;
                     case 3:
                         OrderMenu.PrintOrderMenu();

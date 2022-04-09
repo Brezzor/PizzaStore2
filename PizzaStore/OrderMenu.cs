@@ -8,7 +8,7 @@ namespace PizzaStore2
     {
         private static Customer newCustomer = new Customer();
         private static Order newOrder;
-        private static List<Pizza> orderPizzas;
+        private static List<Pizza> orderPizzas = new List<Pizza>();
 
         private static string topText()
         {

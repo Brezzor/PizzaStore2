@@ -34,19 +34,32 @@ namespace PizzaStore2
                 }
                 return _price + toppingPrice;
             }
-        }
-
-        public void PrintToppings()
-        {
-            Console.WriteLine($" {string.Join(", ", Toppings)}");
-        }
+        }                
 
         public void PrintPizza()
-        {            
+        {
             Console.WriteLine(" ----------------------------------");
-            Console.WriteLine($" Nr.{Id} | {Name} | price: {Price}kr.");
+
+            if (Name == null)
+            {                
+                Console.WriteLine($" Nr.{Id} | No Name | Price: {Price}kr.");               
+            }
+            else
+            {
+                Console.WriteLine($" Nr.{Id} | {Name} | price: {Price}kr.");
+            }
             Console.WriteLine(" ----------------------------------");
-            PrintToppings();            
+
+            if (Toppings == null || Toppings.Count <= 0)
+            {
+                Console.WriteLine($" Pizza Has No Toppings");
+            }
+            else
+            {                                                
+                Console.WriteLine($" {string.Join(", ", Toppings)}");
+            }
+            Console.WriteLine(" ----------------------------------");
+
         }
     }
 }

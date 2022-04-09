@@ -11,6 +11,7 @@ namespace PizzaStore2
         private static List<Pizza> _pizzas = new List<Pizza>();        
         private const double _tax = 1.25;
         private const double _deliveryCost = 40;
+
         public Order()
         {
             if (this != null)
@@ -31,7 +32,8 @@ namespace PizzaStore2
             return result * _tax + _deliveryCost;
         }
         public void PrintOrder()
-        {            
+        {
+            Console.WriteLine("\n ---------------------------------");
             Console.WriteLine($" First name: {Customer.FirstName}");
             Console.WriteLine($" Last name: {Customer.LastName}");
             Console.WriteLine(" ---------------------------------");
@@ -46,28 +48,18 @@ namespace PizzaStore2
         {
             Console.WriteLine(" ¤--------------¤");
             Console.WriteLine(" | Pizza Orders |");
-            Console.WriteLine(" ¤--------------¤");
-            Console.WriteLine();
+            Console.WriteLine(" ¤--------------¤");            
 
-            if (_pizzas != null && _pizzas.Count != 0)
+            if (_orders == null || _orders.Count == 0)
             {
-                for (int i = 0; i < _orders.Count; i++)
-                {
-                    Console.WriteLine($" ---- Pizza Order {i} ----");
-                    Console.WriteLine($" First name: {_orders[i]._customer.FirstName}");
-                    Console.WriteLine($" Last name: {_orders[i]._customer.LastName}");
-                    Console.WriteLine(" -------------------------------------------");
-                    foreach (Pizza pizza in _pizzas)
-                    {
-                        pizza.PrintPizza();
-                    }
-                    Console.WriteLine($" Total price: {_orders[i].CalculateTotalPrice()}");
-                    Console.WriteLine(" -------------------------------------------");
-                }
+                Console.WriteLine("\n No Orders made!");
             }
             else
             {
-                Console.WriteLine(" No Orders made!");
+                foreach (Order order in _orders)
+                {
+                    order.PrintOrder();
+                }                
             }
         }
     }
