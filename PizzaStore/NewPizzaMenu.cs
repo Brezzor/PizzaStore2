@@ -93,11 +93,6 @@ namespace PizzaStore2
             Console.ReadKey();
         }
 
-        private static void UpdateToppings(List<string> toppings)
-        {
-            _newPizza.Toppings = toppings;            
-        }
-
         private static void ShowPizza()
         {
             Console.WriteLine(topText());
