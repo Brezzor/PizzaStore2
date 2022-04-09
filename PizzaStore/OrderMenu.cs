@@ -31,11 +31,11 @@ namespace PizzaStore2
         public static void PrintOrderMenu()
         {
             orderPizzas = new List<Pizza>();
-            bool done = false;
+            bool done = false;                                   
 
             while (!done)
             {
-                Console.Clear();
+                Console.Clear();                                                
                 int subMenuChoice = StoreMethods.PrintMenuChoices(orderMenuChoices, topText());
 
                 switch (subMenuChoice)
@@ -44,16 +44,21 @@ namespace PizzaStore2
                         AddPizza();
                         break;
                     case 2:
-                        RemovePizza();
+                        Console.Clear();
                         break;
                     case 3:
-                        EditPizza();
+                        Console.Clear();
                         break;
                     case 4:
-                        PrintOrderPizzas();                        
+                        PrintOrderPizzas();
+                        Console.WriteLine("\n Press any key to continue");
+                        Console.ReadKey();
                         break;
-                    case 5:                        
-                        CreateOrder();                        
+                    case 5:
+                        Console.Clear();
+                        CreateOrder();
+                        Console.WriteLine("\n Press any key to continue");
+                        Console.ReadKey();
                         done = true;
                         break;
                     case 6:
@@ -63,27 +68,8 @@ namespace PizzaStore2
             }
         }
 
-        private static void RemovePizza()
-        {
-            Console.Clear();
-            Console.WriteLine(topText());
-            Console.WriteLine("\n Does nothing yet");
-            Console.WriteLine("\n Press any key to continue");
-            Console.ReadKey();            
-        }
-
-        private static void EditPizza()
-        {
-            Console.Clear();
-            Console.WriteLine(topText());
-            Console.WriteLine("\n Does nothing yet");
-            Console.WriteLine("\n Press any key to continue");
-            Console.ReadKey();
-        }
-
         private static void CreateOrder()
         {
-            Console.Clear();
             Console.WriteLine(topText());
 
             if (orderPizzas != null && orderPizzas.Count != 0)
@@ -96,15 +82,14 @@ namespace PizzaStore2
             }
             else
             {
-                Console.WriteLine("\n No pizzas was added to the order");
-                Console.WriteLine("\n No order was created");
+                Console.WriteLine(" No pizzas was added to the order");
+                Console.WriteLine(" No order was created");
             }
-            Console.WriteLine("\n Press any key to continue");
-            Console.ReadKey();
         }
 
         private static void AddPizza()
-        {            
+        {
+            Console.Clear();
             Console.CursorVisible = true;
             PizzaCatalog.PrintMenu();
             Console.WriteLine(" Choose a pizza");
@@ -130,7 +115,6 @@ namespace PizzaStore2
 
         private static void PrintOrderPizzas()
         {
-            Console.Clear();
             Console.WriteLine(topText());
 
             if (orderPizzas != null && orderPizzas.Count != 0)
@@ -144,18 +128,14 @@ namespace PizzaStore2
             {
                 Console.WriteLine(" No order made yet");
             }
-            Console.WriteLine("\n Press any key to continue");
-            Console.ReadKey();
         }
 
         private static Customer CreateCustomer()
         {
-            Console.Clear();
-            Console.WriteLine(topText());
             Console.CursorVisible = true;
-            Console.Write("\n Write your firstname: ");
+            Console.Write(" Write your firstname: ");
             string firstName = Console.ReadLine();
-            Console.Write("\n Write your lastname: ");
+            Console.Write(" Write your lastname: ");
             string lastName = Console.ReadLine();
             return new Customer { FirstName = firstName, LastName = lastName };
         }

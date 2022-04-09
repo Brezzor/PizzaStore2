@@ -7,7 +7,7 @@ namespace PizzaStore2
 {
     class NewPizzaMenu
     {
-        private static Pizza _newPizza = new Pizza();
+        public static Pizza _newPizza = new Pizza();
         private static int _id;
         private static string _name;        
 
