@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PizzaStore2.CatalogMenu" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABA=</HashCode>
+      <FileName>CatalogMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.Customer" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.MainMenu" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAABA=</HashCode>
+      <FileName>MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.NewPizzaMenu" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAMAAAACQAAAAAEABAQAQEAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>NewPizzaMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.Order" Collapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIEAAAAAAAEAAoAAAAAAAAAACAACAAEABAAAAAQAAAA=</HashCode>
+      <FileName>Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.OrderMenu" Collapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAQAAgAAAAAAAAAAAAAAAAICCAAgCABAZA=</HashCode>
+      <FileName>OrderMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.Pizza" Collapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACIAAAAQAAAAAAAABAAAQAAAAADAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Pizza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.PizzaCatalog" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAIAAAABCAAAQA=</HashCode>
+      <FileName>PizzaCatalog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.Program" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.Store" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Store.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.StoreMethods" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StoreMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PizzaStore2.ToppingsMenu" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAgQAAgAAADA=</HashCode>
+      <FileName>ToppingsMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
